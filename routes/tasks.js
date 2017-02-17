@@ -30,11 +30,10 @@ router.get('/tasks/:id', function(req, res, next){
 //save task
 router.post('/task',function(req, res, next){
     var task = req.body;
-    console.log(task);
     if(!task.title || (task.status+'')){
         res.status(400);
         res.json({
-            "error":task
+            "error":"Bad Data"
         })
     } else{
         db.tasks.save(task, function(err, task){
@@ -78,7 +77,7 @@ router.put('/tasks/:id', function(req, res, next){
             "error":"bad Data"
         });
     }else{
-        db.tasks.update({_id: mongojs.ObjectId(req.params.id)},updTask, {}, function(err, task){
+        db.tasks.update({_id: mongojs.ObjectId(task.id)},updTask, {}, function(err, task){
         if(err){
             res.send(err);
         }
