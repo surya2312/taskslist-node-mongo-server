@@ -30,7 +30,7 @@ router.get('/tasks/:id', function(req, res, next){
 //save task
 router.post('/task',function(req, res, next){
     var task = req.body;
-    if(!task.title || (task.isDone+'')){
+    if(!task.title || (task.status+'')){
         res.status(400);
         res.json({
             "error":"Bad Data"
@@ -63,8 +63,8 @@ router.put('/tasks/:id', function(req, res, next){
     var task = req.body;
     var updTask = {};
 
-    if(task.isDone){
-        updTask.isDone = task.isDone;
+    if(task.status){
+        updTask.status = task.status;
     }
     
     if(task.title){
