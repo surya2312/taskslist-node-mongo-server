@@ -30,10 +30,11 @@ router.get('/tasks/:id', function(req, res, next){
 //save task
 router.post('/task',function(req, res, next){
     var task = req.body;
+    
     if(!task.title || (task.status+'')){
         res.status(400);
         res.json({
-            "error":"Bad Data"
+            "error":"Bad Data"+task
         })
     } else{
         db.tasks.save(task, function(err, task){
