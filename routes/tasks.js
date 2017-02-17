@@ -34,7 +34,7 @@ router.post('/task',function(req, res, next){
     if(!task.title || (task.status+'')){
         res.status(400);
         res.json({
-            "error":"Bad Data"
+            "error":task
         })
     } else{
         db.tasks.save(task, function(err, task){
